@@ -1,0 +1,5 @@
+[core]
+    attributesfile = ~/.gitattributes
+[merge "json"]
+    name = custom merge driver for json files
+    driver = git-json-merge %A %O %B
