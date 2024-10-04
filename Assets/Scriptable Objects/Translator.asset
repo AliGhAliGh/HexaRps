@@ -1,0 +1,789 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00d6534e486d48c2b0a6befaa1530e64, type: 3}
+  m_Name: Translator
+  m_EditorClassIdentifier: 
+  items:
+  - key: RuneInfo
+    text:
+      Farsi: "\u0628\u0627 \u062E\u0631\u06CC\u062F \u0637\u0644\u0633\u0645 \u0647\u0627
+        \u062F\u0634\u0645\u0646\u0627\u0646 \u0634\u0645\u0627 \u0628\u0627 \u0622\u0645\u062F\u0646
+        \u0631\u0648\u06CC \u0622\u0646 \u0647\u0627 \u0622\u0633\u06CC\u0628 \u0645\u06CC
+        \u0628\u06CC\u0646\u0646\u062F.\n\u0647\u0631 \u0637\u0644\u0633\u0645 \u06CC\u06A9
+        \u0633\u0631\u06CC \u0642\u0627\u0628\u0644\u06CC\u062A \u0647\u0627 \u062F\u0627\u0631\u062F
+        \u06A9\u0647 \u0628\u0627 \u062E\u0631\u06CC\u062F \u0647\u0631 3 \u0637\u0644\u0633\u0645
+        \u0641\u0639\u0627\u0644 \u0645\u06CC \u0634\u0648\u0646\u062F!"
+      English: 
+      Arabic: 
+      Russian: 
+      Deutsch: 
+      French: 
+      Spanish: 
+  - key: RuneBlockIsBought
+    text:
+      Farsi: "\u062E\u0631\u06CC\u062F\u0627\u0631\u06CC \u0634\u062F\u0647!"
+      English: 
+      Arabic: 
+      Russian: 
+      Deutsch: 
+      French: 
+      Spanish: 
+  - key: MustBeOnBlock
+    text:
+      Farsi: "\u062F\u0631 \u0627\u06CC\u0646 \u062E\u0627\u0646\u0647 \u0642\u0631\u0627\u0631
+        \u0646\u062F\u0627\u0631\u06CC\u062F!"
+      English: 
+      Arabic: 
+      Russian: 
+      Deutsch: 
+      French: 
+      Spanish: 
+  - key: NotEnoughGold
+    text:
+      Farsi: "\u0633\u06A9\u0647 \u06A9\u0627\u0641\u06CC \u0646\u062F\u0627\u0631\u06CC\u062F."
+      English: 
+      Arabic: 
+      Russian: 
+      Deutsch: 
+      French: 
+      Spanish: 
+  - key: HealRune
+    text:
+      Farsi: "\u0637\u0644\u0633\u0645 \u0634\u0641\u0627"
+      English: 
+      Arabic: 
+      Russian: 
+      Deutsch: 
+      French: 
+      Spanish: 
+  - key: FilthyRune
+    text:
+      Farsi: "\u0637\u0644\u0633\u0645 \u06A9\u062B\u06CC\u0641"
+      English: 
+      Arabic: 
+      Russian: 
+      Deutsch: 
+      French: 
+      Spanish: 
+  - key: PowerRune
+    text:
+      Farsi: "\u0637\u0644\u0633\u0645 \u0642\u062F\u0631\u062A"
+      English: 
+      Arabic: 
+      Russian: 
+      Deutsch: 
+      French: 
+      Spanish: 
+  - key: ControlRune
+    text:
+      Farsi: "\u0637\u0644\u0633\u0645 \u06A9\u0646\u062A\u0631\u0644"
+      English: 
+      Arabic: 
+      Russian: 
+      Deutsch: 
+      French: 
+      Spanish: 
+  - key: SpeedRune
+    text:
+      Farsi: "\u0637\u0644\u0633\u0645 \u0633\u0631\u0639\u062A"
+      English: 
+      Arabic: 
+      Russian: 
+      Deutsch: 
+      French: 
+      Spanish: 
+  - key: GoldenRune
+    text:
+      Farsi: "\u0637\u0644\u0633\u0645 \u0637\u0644\u0627"
+      English: 
+      Arabic: 
+      Russian: 
+      Deutsch: 
+      French: 
+      Spanish: 
+  - key: ControlRuneInfo
+    text:
+      Farsi: "\u062A\u0627\u0633 \u062F\u0634\u0645\u0646\u0627\u0646 \u0631\u0627
+        [P0] \u0648\u0627\u062D\u062F \u06A9\u0627\u0647\u0634 \u0645\u06CC \u062F\u0647\u062F"
+      English: 
+      Arabic: 
+      Russian: 
+      Deutsch: 
+      French: 
+      Spanish: 
+  - key: SpeedRuneInfo
+    text:
+      Farsi: "\u0628\u0647 \u0635\u0627\u062D\u0628 \u062E\u0648\u062F \u062A\u0648\u0627\u0646\u0627\u06CC\u06CC
+        \u0627\u0646\u062A\u062E\u0627\u0628 \u062A\u0627\u0633 \u0645\u06CC \u062F\u0647\u062F"
+      English: 
+      Arabic: 
+      Russian: 
+      Deutsch: 
+      French: 
+      Spanish: 
+  - key: HealRuneInfo
+    text:
+      Farsi: "\u0635\u0627\u062D\u0628 \u062E\u0648\u062F \u0631\u0627 [P0] \u0634\u0641\u0627
+        \u0645\u06CC \u062F\u0647\u062F"
+      English: 
+      Arabic: 
+      Russian: 
+      Deutsch: 
+      French: 
+      Spanish: 
+  - key: FilthyRuneInfo
+    text:
+      Farsi: "\u0627\u0632 \u062F\u0634\u0645\u0646\u0627\u0646 \u0622\u06CC\u062A\u0645
+        \u0645\u06CC \u06AF\u06CC\u0631\u062F \u0648 \u0628\u0647 \u0635\u0627\u062D\u0628
+        \u062E\u0648\u062F \u0645\u06CC \u062F\u0647\u062F"
+      English: 
+      Arabic: 
+      Russian: 
+      Deutsch: 
+      French: 
+      Spanish: 
+  - key: PowerRuneInfo
+    text:
+      Farsi: "[P0] \u0622\u0633\u06CC\u0628 \u0627\u0636\u0627\u0641\u06CC \u0645\u06CC
+        \u0632\u0646\u062F"
+      English: 
+      Arabic: 
+      Russian: 
+      Deutsch: 
+      French: 
+      Spanish: 
+  - key: GoldenRuneInfo
+    text:
+      Farsi: "\u0628\u0647 \u0635\u0627\u062D\u0628 \u062E\u0648\u062F [P0] \u0633\u06A9\u0647
+        \u0645\u06CC \u062F\u0647\u062F"
+      English: 
+      Arabic: 
+      Russian: 
+      Deutsch: 
+      French: 
+      Spanish: 
+  - key: Buy
+    text:
+      Farsi: "\u062E\u0631\u06CC\u062F"
+      English: 
+      Arabic: 
+      Russian: 
+      Deutsch: 
+      French: 
+      Spanish: 
+  - key: Consume
+    text:
+      Farsi: "\u0645\u0635\u0631\u0641"
+      English: Consume
+      Arabic: 
+      Russian: 
+      Deutsch: 
+      French: 
+      Spanish: 
+  - key: EmptyList
+    text:
+      Farsi: "\u0644\u06CC\u0633\u062A \u062E\u0627\u0644\u06CC \u0645\u06CC \u0628\u0627\u0634\u062F!"
+      English: List is empty!
+      Arabic: 
+      Russian: 
+      Deutsch: 
+      French: 
+      Spanish: 
+  - key: MeatInfo
+    text:
+      Farsi: "\u0628\u0627 \u0627\u0633\u062A\u0641\u0627\u062F\u0647 \u0627\u0632
+        \u06AF\u0648\u0634\u062A \u0645\u06CC \u062A\u0648\u0627\u0646 [P0] \u0648\u0627\u062D\u062F
+        \u0634\u0641\u0627 \u06CC\u0627\u0641\u062A \u06CC\u0627 \u0628\u0627 \u0622\u0646
+        \u0645\u062D\u0635\u0648\u0644\u0627\u062A \u0628\u0647\u062A\u0631\u06CC
+        \u062F\u0631 \u0622\u0634\u067E\u0632\u062E\u0627\u0646\u0647 \u062A\u0648\u0644\u06CC\u062F
+        \u06A9\u0631\u062F"
+      English: Meat can be used to heal [P0] units or produce better products in
+        the kitchen
+      Arabic: 
+      Russian: 
+      Deutsch: 
+      French: 
+      Spanish: 
+  - key: StealHealthMagic
+    text:
+      Farsi: "\u0627\u0632 \u0647\u0631 \u0628\u0627\u0632\u06CC\u06A9\u0646 [P0]
+        \u0648\u0627\u062D\u062F \u0633\u0644\u0627\u0645\u062A\u06CC \u0628\u06AF\u06CC\u0631"
+      English: Get [P0] health from each player
+      Arabic: 
+      Russian: 
+      Deutsch: 
+      French: 
+      Spanish: 
+  - key: StealGoldMagic
+    text:
+      Farsi: "\u0627\u0632 \u0647\u0631 \u0628\u0627\u0632\u06CC\u06A9\u0646 [P0]
+        \u0633\u06A9\u0647 \u0628\u06AF\u06CC\u0631"
+      English: Get [P0] gold from each player
+      Arabic: 
+      Russian: 
+      Deutsch: 
+      French: 
+      Spanish: 
+  - key: HealMaster
+    text:
+      Farsi: "[P0] \u0648\u0627\u062D\u062F \u0633\u0644\u0627\u0645\u062A\u06CC
+        \u0628\u0647 \u062F\u0633\u062A \u0622\u0648\u0631"
+      English: Gain [P0] health units
+      Arabic: 
+      Russian: 
+      Deutsch: 
+      French: 
+      Spanish: 
+  - key: GoldMaster
+    text:
+      Farsi: "[P0] \u0633\u06A9\u0647 \u0628\u0647 \u062F\u0633\u062A \u0622\u0648\u0631"
+      English: Gain [P0] golds
+      Arabic: 
+      Russian: 
+      Deutsch: 
+      French: 
+      Spanish: 
+  - key: NerfRemove
+    text:
+      Farsi: "\u0647\u0645\u0647 \u0627\u062B\u0631\u0627\u062A \u0645\u0646\u0641\u06CC
+        \u0631\u0627 \u067E\u0627\u06A9 \u06A9\u0646!"
+      English: Remove all negative effects!
+      Arabic: 
+      Russian: 
+      Deutsch: 
+      French: 
+      Spanish: 
+  - key: PoorCare
+    text:
+      Farsi: "[P0] \u0633\u06A9\u0647 \u0628\u0647 \u0641\u0642\u06CC\u0631 \u062A\u0631\u06CC\u0646
+        \u0628\u0627\u0632\u06CC\u06A9\u0646 \u0628\u062F\u0647!"
+      English: Give [P0] golds to the poorest player!
+      Arabic: 
+      Russian: 
+      Deutsch: 
+      French: 
+      Spanish: 
+  - key: PayWithLife
+    text:
+      Farsi: "[P0] \u0633\u06A9\u0647 \u06CC\u0627 \u0633\u0644\u0627\u0645\u062A\u06CC
+        \u0627\u0632 \u062F\u0633\u062A \u0628\u062F\u0647!"
+      English: Lose [P0] coins or health!
+      Arabic: 
+      Russian: 
+      Deutsch: 
+      French: 
+      Spanish: 
+  - key: Cook
+    text:
+      Farsi: "\u067E\u062E\u062A\u0646"
+      English: Cook
+      Arabic: 
+      Russian: 
+      Deutsch: 
+      French: 
+      Spanish: 
+  - key: Kitchen
+    text:
+      Farsi: "\u0622\u0634\u067E\u0632\u062E\u0627\u0646\u0647"
+      English: Kitchen
+      Arabic: 
+      Russian: 
+      Deutsch: 
+      French: 
+      Spanish: 
+  - key: Inventory
+    text:
+      Farsi: "\u0645\u0648\u062C\u0648\u062F\u06CC"
+      English: Inventory
+      Arabic: 
+      Russian: 
+      Deutsch: 
+      French: 
+      Spanish: 
+  - key: NeededItems
+    text:
+      Farsi: "\u0645\u0648\u0627\u0631\u062F \u0645\u0648\u0631\u062F \u0646\u06CC\u0627\u0632"
+      English: Required items
+      Arabic: 
+      Russian: 
+      Deutsch: 
+      French: 
+      Spanish: 
+  - key: BurgerInfo
+    text:
+      Farsi: "\u0627\u0633\u062A\u06CC\u06A9 \u0634\u0645\u0627 \u0631\u0627 \u062F\u0631
+        3 \u0646\u0648\u0628\u062A \u0628\u0647 \u0627\u0646\u062F\u0627\u0632\u0647
+        [P0] , [P1] , [P2] \u0648\u0627\u062D\u062F \u0634\u0641\u0627 \u062E\u0648\u0627\u0647\u062F
+        \u062F\u0627\u062F."
+      English: The steak will heal you in 3 turns equal to [P0] , [P1] , [P2] units.
+      Arabic: 
+      Russian: 
+      Deutsch: 
+      French: 
+      Spanish: 
+  - key: SaladInfo
+    text:
+      Farsi: "\u0633\u0627\u0644\u0627\u062F \u0647\u0645\u0647 \u0627\u062B\u0631\u0627\u062A
+        \u0645\u0646\u0641\u06CC \u0631\u0627 \u0627\u0632 \u0628\u06CC\u0646 \u0645\u06CC
+        \u0628\u0631\u062F \u0648 \u0634\u0645\u0627 \u0631\u0627 [P0] \u0648\u0627\u062D\u062F
+        \u0634\u0641\u0627 \u0645\u06CC \u062F\u0647\u062F."
+      English: Salad removes all negative effects and heals you for [P0] units.
+      Arabic: 
+      Russian: 
+      Deutsch: 
+      French: 
+      Spanish: 
+  - key: NotEnoughGoods
+    text:
+      Farsi: "\u0645\u0648\u0627\u062F \u0646\u0627 \u06A9\u0627\u0641\u06CC"
+      English: Not enough goods
+      Arabic: 
+      Russian: 
+      Deutsch: 
+      French: 
+      Spanish: 
+  - key: WhereYouTravel
+    text:
+      Farsi: "\u0628\u0647 \u06A9\u062C\u0627 \u0633\u0641\u0631 \u0645\u06CC \u06A9\u0646\u06CC\u062F\u061F"
+      English: Where are you traveling?
+      Arabic: 
+      Russian: 
+      Deutsch: 
+      French: 
+      Spanish: 
+  - key: Remove
+    text:
+      Farsi: "\u062D\u0630\u0641"
+      English: Remove
+      Arabic: 
+      Russian: 
+      Deutsch: 
+      French: 
+      Spanish: 
+  - key: NoSpaces
+    text:
+      Farsi: "\u0628\u06CC \u0645\u06A9\u0627\u0646 \u0647\u0627"
+      English: No spaces
+      Arabic: 
+      Russian: 
+      Deutsch: 
+      French: 
+      Spanish: 
+  - key: MustDrop
+    text:
+      Farsi: "\u0634\u0645\u0627 \u0628\u0627\u06CC\u062F \u0622\u06CC\u062A\u0645
+        \u0647\u0627\u06CC \u0628\u06CC \u0645\u06A9\u0627\u0646 \u0631\u0627 \u0645\u062F\u06CC\u0631\u06CC\u062A
+        \u06A9\u0646\u06CC\u062F!"
+      English: You have to manage misplaced items!
+      Arabic: 
+      Russian: 
+      Deutsch: 
+      French: 
+      Spanish: 
+  - key: Notice!
+    text:
+      Farsi: "\u0647\u0634\u062F\u0627\u0631!"
+      English: Notice!
+      Arabic: 
+      Russian: 
+      Deutsch: 
+      French: 
+      Spanish: 
+  - key: Note!
+    text:
+      Farsi: "\u062A\u0648\u062C\u0647!"
+      English: Note!
+      Arabic: 
+      Russian: 
+      Deutsch: 
+      French: 
+      Spanish: 
+  - key: Error!
+    text:
+      Farsi: "\u062E\u0637\u0627!"
+      English: Error!
+      Arabic: 
+      Russian: 
+      Deutsch: 
+      French: 
+      Spanish: 
+  - key: No
+    text:
+      Farsi: "\u062E\u06CC\u0631"
+      English: No
+      Arabic: 
+      Russian: 
+      Deutsch: 
+      French: 
+      Spanish: 
+  - key: Yes
+    text:
+      Farsi: "\u0628\u0644\u0647"
+      English: Yes
+      Arabic: 
+      Russian: 
+      Deutsch: 
+      French: 
+      Spanish: 
+  - key: AreYouSure
+    text:
+      Farsi: "\u0622\u06CC\u0627 \u0645\u0637\u0645\u0627\u0646 \u0647\u0633\u062A\u06CC\u062F\u061F"
+      English: Are you sure
+      Arabic: 
+      Russian: 
+      Deutsch: 
+      French: 
+      Spanish: 
+  - key: ComingSoon
+    text:
+      Farsi: "\u0628\u0647 \u0632\u0648\u062F\u06CC ..."
+      English: Coming soon ...
+      Arabic: 
+      Russian: 
+      Deutsch: 
+      French: 
+      Spanish: 
+  - key: PleaseWait
+    text:
+      Farsi: "\u0645\u0646\u062A\u0638\u0631 \u0628\u0645\u0627\u0646\u06CC\u062F
+        ..."
+      English: Please wait ...
+      Arabic: 
+      Russian: 
+      Deutsch: 
+      French: 
+      Spanish: 
+  - key: SomeErrorHappened
+    text:
+      Farsi: "\u0645\u0634\u06A9\u0644\u06CC \u067E\u06CC\u0634 \u0622\u0645\u062F\u0647
+        \u0627\u0633\u062A!"
+      English: Some error happened!
+      Arabic: 
+      Russian: 
+      Deutsch: 
+      French: 
+      Spanish: 
+  - key: Successful
+    text:
+      Farsi: "\u0628\u0627 \u0645\u0648\u0641\u0642\u06CC\u062A \u0627\u0646\u062C\u0627\u0645
+        \u0634\u062F."
+      English: Successfully done!
+      Arabic: 
+      Russian: 
+      Deutsch: 
+      French: 
+      Spanish: 
+  - key: Jail
+    text:
+      Farsi: "\u0632\u0646\u062F\u0627\u0646"
+      English: Jail
+      Arabic: 
+      Russian: 
+      Deutsch: 
+      French: 
+      Spanish: 
+  - key: MustHavePickaxe
+    text:
+      Farsi: "\u0628\u0647 \u06A9\u0644\u0646\u06AF \u0646\u06CC\u0627\u0632 \u0627\u0633\u062A."
+      English: A pickaxe is needed.
+      Arabic: 
+      Russian: 
+      Deutsch: 
+      French: 
+      Spanish: 
+  - key: Pickaxe1Info
+    text:
+      Farsi: "\u0628\u0627 \u06A9\u0644\u0646\u06AF \u0645\u06CC \u062A\u0648\u0627\u0646
+        \u0627\u0632 \u0633\u0646\u06AF \u0647\u0627 \u0628\u0631\u062F\u0627\u0634\u062A
+        \u0645\u062D\u0635\u0648\u0644 \u0627\u0646\u062C\u0627\u0645 \u062F\u0627\u062F\u060C
+        \u0647\u0631 \u0628\u0631\u062F\u0627\u0634\u062A [P0] \u0633\u0646\u06AF
+        \u0645\u06CC \u062F\u0647\u062F."
+      English: "You can harvest crops from rocks with a pickaxe.\r Each harvest gives
+        [P0] stones."
+      Arabic: 
+      Russian: 
+      Deutsch: 
+      French: 
+      Spanish: 
+  - key: Pickaxe2Info
+    text:
+      Farsi: "\u0628\u0627 \u06A9\u0644\u0646\u06AF \u0627\u0631\u062A\u0642\u0627
+        \u06CC\u0627\u0641\u062A\u0647 \u0645\u06CC \u062A\u0648\u0627\u0646 \u0639\u0644\u0627\u0648\u0647
+        \u0628\u0631 \u0628\u0631\u062F\u0627\u0634\u062A \u0627\u0632 \u0633\u0646\u06AF\u060C
+        \u0627\u0644\u0645\u0627\u0633 \u0646\u06CC\u0632 \u0627\u0633\u062A\u062E\u0631\u0627\u062C
+        \u06A9\u0631\u062F. \u0647\u0631 \u0628\u0631\u062F\u0627\u0634\u062A [P0]
+        \u0633\u0646\u06AF \u0645\u06CC \u062F\u0647\u062F."
+      English: "With the upgraded pickaxe, you can also extract diamonds in addition
+        to harvesting stones.\r Each harvest gives [P0] stones.\r"
+      Arabic: 
+      Russian: 
+      Deutsch: 
+      French: 
+      Spanish: 
+  - key: MustHavePickaxe2
+    text:
+      Farsi: "\u06A9\u0644\u0646\u06AF \u0642\u0648\u06CC \u062A\u0631 \u0646\u06CC\u0627\u0632
+        \u0627\u0633\u062A."
+      English: A stronger pickaxe is needed.
+      Arabic: 
+      Russian: 
+      Deutsch: 
+      French: 
+      Spanish: 
+  - key: FireStoneInfo
+    text:
+      Farsi: "\u0633\u0646\u06AF \u0622\u062A\u0634 \u062F\u0631 \u0622\u0647\u0646\u06AF\u0631\u06CC
+        \u0628\u0631\u0627\u06CC \u0633\u0627\u062E\u062A \u0634\u0645\u0634 \u06CC\u0627
+        \u0627\u0633\u0644\u062D\u0647 \u0647\u0627\u06CC \u0642\u0648\u06CC \u062A\u0631
+        \u06A9\u0627\u0631\u0628\u0631\u062F \u062F\u0627\u0631\u062F."
+      English: Firestone is used in blacksmithing to make ingots or stronger weapons.
+      Arabic: 
+      Russian: 
+      Deutsch: 
+      French: 
+      Spanish: 
+  - key: HealStoneInfo
+    text:
+      Farsi: "\u0633\u0646\u06AF \u0634\u0641\u0627 \u062F\u0631 \u0622\u0647\u0646\u06AF\u0631\u06CC
+        \u0628\u0631\u0627\u06CC \u0633\u0627\u062E\u062A \u0634\u0645\u0634 \u06CC\u0627
+        \u0627\u0633\u0644\u062D\u0647 \u0647\u0627\u06CC \u0642\u0648\u06CC \u062A\u0631
+        \u06A9\u0627\u0631\u0628\u0631\u062F \u062F\u0627\u0631\u062F."
+      English: Healstone is used in blacksmithing to make ingots or stronger weapons.
+      Arabic: 
+      Russian: 
+      Deutsch: 
+      French: 
+      Spanish: 
+  - key: GoldStoneInfo
+    text:
+      Farsi: "\u0633\u0646\u06AF \u0637\u0644\u0627 \u062F\u0631 \u0622\u0647\u0646\u06AF\u0631\u06CC
+        \u0628\u0631\u0627\u06CC \u0633\u0627\u062E\u062A \u0634\u0645\u0634 \u06CC\u0627
+        \u0627\u0633\u0644\u062D\u0647 \u0647\u0627\u06CC \u0642\u0648\u06CC \u062A\u0631
+        \u06A9\u0627\u0631\u0628\u0631\u062F \u062F\u0627\u0631\u062F."
+      English: Goldstone is used in blacksmithing to make ingots or stronger weapons.
+      Arabic: 
+      Russian: 
+      Deutsch: 
+      French: 
+      Spanish: 
+  - key: IceStoneInfo
+    text:
+      Farsi: "\u0633\u0646\u06AF \u06CC\u062E \u062F\u0631 \u0622\u0647\u0646\u06AF\u0631\u06CC
+        \u0628\u0631\u0627\u06CC \u0633\u0627\u062E\u062A \u0634\u0645\u0634 \u06CC\u0627
+        \u0627\u0633\u0644\u062D\u0647 \u0647\u0627\u06CC \u0642\u0648\u06CC \u062A\u0631
+        \u06A9\u0627\u0631\u0628\u0631\u062F \u062F\u0627\u0631\u062F."
+      English: Icestone is used in blacksmithing to make ingots or stronger weapons.
+      Arabic: 
+      Russian: 
+      Deutsch: 
+      French: 
+      Spanish: 
+  - key: MagicStoneInfo
+    text:
+      Farsi: "\u0633\u0646\u06AF \u062C\u0627\u062F\u0648 \u062F\u0631 \u0622\u0647\u0646\u06AF\u0631\u06CC
+        \u0628\u0631\u0627\u06CC \u0633\u0627\u062E\u062A \u0634\u0645\u0634 \u06CC\u0627
+        \u0627\u0633\u0644\u062D\u0647 \u0647\u0627\u06CC \u0642\u0648\u06CC \u062A\u0631
+        \u06A9\u0627\u0631\u0628\u0631\u062F \u062F\u0627\u0631\u062F."
+      English: Magicstone is used in blacksmithing to make ingots or stronger weapons.
+      Arabic: 
+      Russian: 
+      Deutsch: 
+      French: 
+      Spanish: 
+  - key: IronStoneInfo
+    text:
+      Farsi: "\u0633\u0646\u06AF \u0622\u0647\u0646 \u062F\u0631 \u0622\u0647\u0646\u06AF\u0631\u06CC
+        \u0628\u0631\u0627\u06CC \u0633\u0627\u062E\u062A \u0634\u0645\u0634 \u06CC\u0627
+        \u0627\u0633\u0644\u062D\u0647 \u0647\u0627\u06CC \u0642\u0648\u06CC \u062A\u0631
+        \u06A9\u0627\u0631\u0628\u0631\u062F \u062F\u0627\u0631\u062F."
+      English: Ironstone is used in blacksmithing to make ingots or stronger weapons.
+      Arabic: 
+      Russian: 
+      Deutsch: 
+      French: 
+      Spanish: 
+  - key: DiamondInfo
+    text:
+      Farsi: "\u0627\u0644\u0645\u0627\u0633 \u0631\u0627 \u0645\u06CC \u062A\u0648\u0627\u0646
+        \u062F\u0631 \u0644\u062D\u0638\u0647 \u0641\u0631\u0648\u062E\u062A \u0648
+        [P0] \u0633\u06A9\u0647 \u0628\u0647 \u062F\u0633\u062A \u0622\u0648\u0631\u062F\u060C
+        \u06CC\u0627 \u0622\u0646 \u0631\u0627 \u062F\u0631 \u0641\u0631\u0648\u0634\u06AF\u0627\u0647
+        \u0628\u0647 \u0642\u06CC\u0645\u062A [P1] \u0628\u0641\u0631\u0648\u0634\u06CC\u062F."
+      English: Diamonds can be sold instantly for [P0] golds, or sold in the store
+        for [P1].
+      Arabic: 
+      Russian: 
+      Deutsch: 
+      French: 
+      Spanish: 
+  - key: InsectJailInfi
+    text:
+      Farsi: "\u0634\u0645\u0627 \u0645\u06CC \u062A\u0648\u0627\u0646\u06CC\u062F
+        \u0628\u0627 \u062E\u0631\u06CC\u062F\u0646 \u062D\u0634\u0631\u0647 \u0622\u0646
+        \u0631\u0627 \u0628\u0647 \u062C\u0627\u0646 \u062F\u0634\u0645\u0646\u0627\u0646
+        \u062E\u0648\u062F \u0628\u06CC\u0646\u062F\u0627\u0632\u06CC\u062F\u060C
+        \u06CC\u0627 \u0628\u0627 \u06A9\u0634\u062A\u0646 \u0622\u0646 \u062A\u062E\u0645
+        \u0622\u0646 \u0631\u0627 \u0628\u062F\u0633\u062A \u0622\u0648\u0631\u06CC\u062F
+        \u062A\u0627 \u062F\u0631 \u0645\u06A9\u0627\u0646 \u0645\u0646\u0627\u0633\u0628
+        \u0627\u0632 \u0622\u0646 \u0627\u0633\u062A\u0641\u0627\u062F\u0647 \u06A9\u0646\u06CC\u062F."
+      English: You can buy the bug to kill your enemies, or kill it to get its egg
+        to use in the right place.
+      Arabic: 
+      Russian: 
+      Deutsch: 
+      French: 
+      Spanish: 
+  - key: Fight
+    text:
+      Farsi: "\u0645\u0628\u0627\u0631\u0632\u0647"
+      English: Fight
+      Arabic: 
+      Russian: 
+      Deutsch: 
+      French: 
+      Spanish: 
+  - key: BuyInsect
+    text:
+      Farsi: "\u0622\u06CC\u0627 \u0627\u0632 \u062E\u0631\u06CC\u062F \u062D\u0634\u0631\u0647
+        \u0628\u0647 \u0642\u06CC\u0645\u062A [P0] \u0637\u0644\u0627 \u0645\u0637\u0645\u0626\u0646
+        \u0647\u0633\u062A\u06CC\u062F\u061F"
+      English: Are you sure about buying the insect for [P0] gold?
+      Arabic: 
+      Russian: 
+      Deutsch: 
+      French: 
+      Spanish: 
+  - key: Cancel
+    text:
+      Farsi: "\u0644\u063A\u0648"
+      English: Cancel
+      Arabic: 
+      Russian: 
+      Deutsch: 
+      French: 
+      Spanish: 
+  - key: Login
+    text:
+      Farsi: "\u0648\u0631\u0648\u062F"
+      English: Login
+      Arabic: 
+      Russian: 
+      Deutsch: 
+      French: 
+      Spanish: 
+  - key: Signup
+    text:
+      Farsi: "\u062B\u0628\u062A \u0646\u0627\u0645"
+      English: Signup
+      Arabic: 
+      Russian: 
+      Deutsch: 
+      French: 
+      Spanish: 
+  - key: Username
+    text:
+      Farsi: "\u0646\u0627\u0645 \u06A9\u0627\u0631\u0628\u0631\u06CC"
+      English: Username
+      Arabic: 
+      Russian: 
+      Deutsch: 
+      French: 
+      Spanish: 
+  - key: Password
+    text:
+      Farsi: "\u0631\u0645\u0632 \u0639\u0628\u0648\u0631"
+      English: Password
+      Arabic: 
+      Russian: 
+      Deutsch: 
+      French: 
+      Spanish: 
+  - key: LobbyName
+    text:
+      Farsi: "\u0646\u0627\u0645 \u0644\u0627\u0628\u06CC"
+      English: Lobby Name
+      Arabic: 
+      Russian: 
+      Deutsch: 
+      French: 
+      Spanish: 
+  - key: Create
+    text:
+      Farsi: "\u0633\u0627\u062E\u062A"
+      English: Create
+      Arabic: 
+      Russian: 
+      Deutsch: 
+      French: 
+      Spanish: 
+  - key: InsectEggItemInfo
+    text:
+      Farsi: "\u0628\u0627 \u0627\u0633\u062A\u0641\u0627\u062F\u0647 \u0627\u0632
+        \u062A\u062E\u0645 \u062D\u0634\u0631\u0627\u062A \u0645\u06CC \u062A\u0648\u0627\u0646\u06CC\u062F
+        \u06CC\u06A9 \u062A\u062E\u0645 \u062D\u0634\u0631\u0647 \u062F\u0631 \u0632\u0645\u06CC\u0646
+        \u0628\u06A9\u0627\u0631\u06CC\u062F \u06A9\u0647 \u067E\u0633 \u0627\u0632
+        \u06CC\u06A9 \u062F\u0648\u0631 \u062A\u0628\u062F\u06CC\u0644 \u0628\u0647
+        \u062D\u0634\u0631\u0647 \u0645\u06CC \u0634\u0648\u062F.\n\u0641\u0642\u0637
+        \u0646\u0628\u0627\u06CC\u062F \u062F\u0634\u0645\u0646\u0627\u0646\u062A\u0627\u0646
+        \u0622\u0646 \u0631\u0627 \u0628\u062E\u0648\u0631\u0646\u062F!"
+      English: 'Using insect eggs, you can plant an insect egg on the ground, which
+        will turn into an insect after one round.
+
+        Just don''t let your enemies
+        eat it!'
+      Arabic: 
+      Russian: 
+      Deutsch: 
+      French: 
+      Spanish: 
+  - key: InsectJailInfo
+    text:
+      Farsi: "\u0634\u0645\u0627 \u0645\u06CC \u062A\u0648\u0627\u0646\u06CC\u062F
+        \u0628\u0627 \u062E\u0631\u06CC\u062F\u0646 \u062D\u0634\u0631\u0647 \u0622\u0646
+        \u0631\u0627 \u0628\u0647 \u062C\u0627\u0646 \u062F\u0634\u0645\u0646\u0627\u0646
+        \u062E\u0648\u062F \u0628\u06CC\u0646\u062F\u0627\u0632\u06CC\u062F\u060C
+        \u06CC\u0627 \u0628\u0627 \u06A9\u0634\u062A\u0646 \u0622\u0646 \u062A\u062E\u0645
+        \u0622\u0646 \u0631\u0627 \u0628\u062F\u0633\u062A \u0622\u0648\u0631\u06CC\u062F
+        \u062A\u0627 \u062F\u0631 \u0645\u06A9\u0627\u0646 \u0645\u0646\u0627\u0633\u0628
+        \u0627\u0632 \u0622\u0646 \u0627\u0633\u062A\u0641\u0627\u062F\u0647 \u06A9\u0646\u06CC\u062F."
+      English: You can buy the bug to kill your enemies, or kill it to get its egg
+        to use in the right place.
+      Arabic: 
+      Russian: 
+      Deutsch: 
+      French: 
+      Spanish: 
+  - key: SelectAnchorPosition
+    text:
+      Farsi: "\u0644\u0646\u06AF\u0631 \u0631\u0627 \u06A9\u062C\u0627 \u0642\u0631\u0627\u0631
+        \u0645\u06CC \u062F\u0647\u06CC\u062F\u061F"
+      English: "Where do you put the anchor?\r"
+      Arabic: 
+      Russian: 
+      Deutsch: 
+      French: 
+      Spanish: 
+  - key: AnchorItemInfo
+    text:
+      Farsi: "\u0628\u0627 \u0627\u0633\u062A\u0641\u0627\u062F\u0647 \u0627\u0632
+        \u0644\u0646\u06AF\u0631 \u0645\u06CC \u062A\u0648\u0627\u0646\u06CC\u062F
+        \u06CC\u06A9 \u062E\u0627\u0646\u0647 \u0631\u0627 \u0646\u0634\u0627\u0646
+        \u06A9\u0646\u06CC\u062F \u0648 \u0645\u0637\u0645\u0626\u0646 \u0645\u06CC
+        \u0634\u0648\u06CC\u062F \u06A9\u0647 \u0627\u0632 \u0622\u0646 \u0631\u062F
+        \u0646\u0645\u06CC \u0634\u0648\u06CC\u062F!"
+      English: Using the anchor you can target a house and make sure you don't miss
+        it!
+      Arabic: 
+      Russian: 
+      Deutsch: 
+      French: 
+      Spanish: 

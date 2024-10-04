@@ -1,5 +1,5 @@
+using Blocks;
 using UnityEngine;
-using Utilities;
 
 public class TileDetector : MonoBehaviour
 {
@@ -24,18 +24,22 @@ public class TileDetector : MonoBehaviour
 		if (Input.GetMouseButtonDown(0))
 		{
 			var ray = mainCamera.ScreenPointToRay(Input.mousePosition);
-
 			if (Physics.Raycast(ray, out var hit))
-			{
-				var res = GroundManager.GetPosition(hit.point);
-				print(res);
-				GroundManager.SetColor(ColorMode.Red, res);
-				Debug.DrawRay(ray.origin, ray.direction * hit.distance, Color.red, 2.0f);
-			}
-			else
-			{
-				Debug.DrawRay(ray.origin, ray.direction * 100, Color.yellow, 2.0f);
-			}
+				GroundManager.AddBlock((BlockMode)Random.Range(0, 3), GroundManager.GetPosition(hit.point));
+		}
+
+		if (Input.GetMouseButtonDown(1))
+		{
+			var ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+			if (Physics.Raycast(ray, out var hit))
+				GroundManager.RemoveBlock(GroundManager.GetPosition(hit.point));
+		}
+
+		if (Input.GetMouseButtonDown(2))
+		{
+			var ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+			if (Physics.Raycast(ray, out var hit))
+				GroundManager.Pushback(GroundManager.GetPosition(hit.point));
 		}
 	}
 }
