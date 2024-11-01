@@ -2032,7 +2032,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6182663499755992551, guid: 8e4076d1ef9878148b6ea02a02caf475, type: 3}
       propertyPath: queueCount
-      value: 15
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

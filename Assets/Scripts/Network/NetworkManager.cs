@@ -379,9 +379,6 @@ namespace Network
 			await SetMatchData(match);
 		}
 
-		public static void Broadcast(OpCode opCode, params object[] data) =>
-			_socket.SendMatchStateAsync(_matchId, (long)opCode, new ByteArray(data));
-
 		public static async Task Quit()
 		{
 			if (_matchId != null)
@@ -390,6 +387,7 @@ namespace Network
 
 		private static async Task SetMatchData(IMatch match)
 		{
+			IsLoading = true;
 			_matchId = match.Id;
 			_random = new Random(match.Id.GetHashCode());
 
@@ -408,7 +406,6 @@ namespace Network
 
 		public static void ConsumeSyncMessages()
 		{
-			IsLoading = true;
 			SyncMessages.ForEach(OnReceived);
 			SyncMessages.Clear();
 			CoroutineRunner.WaitRun(.2f, () => IsLoading = false);
@@ -419,6 +416,9 @@ namespace Network
 		#region BroadCaster
 
 		private static readonly Dictionary<OpCode, Action<string, ByteArray, bool>> Receivers = new();
+
+		public static void Broadcast(OpCode opCode, params object[] data) =>
+			_socket.SendMatchStateAsync(_matchId, (long)opCode, new ByteArray(data));
 
 		private static void OnReceived(IMatchState state)
 		{
@@ -442,7 +442,8 @@ namespace Network
 
 	public enum OpCode
 	{
-		TurnCmd = 12
+		TurnCmd = 12,
+		AddBlock = 13
 	}
 
 	public class User : IEquatable<User>

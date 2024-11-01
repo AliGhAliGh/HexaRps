@@ -787,3 +787,30 @@ MonoBehaviour:
       Deutsch: 
       French: 
       Spanish: 
+  - key: Scissors
+    text:
+      Farsi: "\u0642\u06CC\u0686\u06CC"
+      English: 
+      Arabic: 
+      Russian: 
+      Deutsch: 
+      French: 
+      Spanish: 
+  - key: Rock
+    text:
+      Farsi: "\u0633\u0646\u06AF"
+      English: 
+      Arabic: 
+      Russian: 
+      Deutsch: 
+      French: 
+      Spanish: 
+  - key: Paper
+    text:
+      Farsi: "\u06A9\u0627\u063A\u0630"
+      English: 
+      Arabic: 
+      Russian: 
+      Deutsch: 
+      French: 
+      Spanish: 

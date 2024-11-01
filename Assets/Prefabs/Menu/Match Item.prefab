@@ -276,7 +276,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 4ab7010ecc3ed37418d6bbc1bd6b250e, type: 3}
+    m_Font: {fileID: 12800000, guid: 1af64831e1e9bf440b7157c3f3f79b42, type: 3}
     m_FontSize: 28
     m_FontStyle: 0
     m_BestFit: 1
@@ -430,6 +430,7 @@ MonoBehaviour:
   hasSoundEffect: 1
   hasGraphics: 0
   disabledColor: {r: 0, g: 0, b: 0, a: 0}
+  normalColor: {r: 1, g: 1, b: 1, a: 1}
   allGraphics: []
 --- !u!114 &5365532759742701230
 MonoBehaviour:
@@ -462,7 +463,7 @@ MonoBehaviour:
   hasFather: 0
   father: {fileID: 0}
   sprites:
-  - sprite: {fileID: 21300000, guid: 8c291789626564f05ab21623737d19dd, type: 3}
+  - sprite: {fileID: 21300000, guid: 6a63ef398306547be8cad5f83b8994a3, type: 3}
     code: Owner
     scale: 0
   - sprite: {fileID: 21300000, guid: 6a63ef398306547be8cad5f83b8994a3, type: 3}

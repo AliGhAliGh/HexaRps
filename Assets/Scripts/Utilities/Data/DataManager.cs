@@ -60,6 +60,13 @@ namespace Utilities.Data
 		public static void AddBool(this ByteArray container, bool id) =>
 			container.Data = container.Data.Concat(BitConverter.GetBytes(id)).ToArray();
 
+		public static void AddV3Int(this ByteArray container, Vector3Int v3)
+		{
+			container.AddShort((short)v3.x);
+			container.AddShort((short)v3.y);
+			container.AddShort((short)v3.z);
+		}
+
 		public static void AddString(this ByteArray container, string data)
 		{
 			var res = Encoding.UTF8.GetBytes(data);
@@ -93,16 +100,16 @@ namespace Utilities.Data
 
 		public static Quaternion GetRotation(this ByteArray refData)
 		{
-			var res = GetPreferredData(refData, 16);
-			var split = res.Split(4).ToList();
+			var res = GetPreferredData(refData, 8);
+			var split = res.Split(2).ToList();
 			return new(split[0].GetFloat(), split[1].GetFloat(), split[2].GetFloat(), split[3].GetFloat());
 		}
 
-		public static Vector3 GetVector3(this ByteArray refData)
+		public static Vector3Int GetV3Int(this ByteArray refData)
 		{
-			var res = GetPreferredData(refData, 12);
-			var split = res.Split(4).ToList();
-			return new(split[0].GetFloat(), split[1].GetFloat(), split[2].GetFloat());
+			var res = GetPreferredData(refData, 6);
+			var split = res.Split(2).ToList();
+			return new(split[0].GetShort(), split[1].GetShort(), split[2].GetShort());
 		}
 
 		private static ByteArray GetPreferredData(this ByteArray data, int length)
@@ -155,6 +162,9 @@ namespace Utilities.Data
 					break;
 				case bool b:
 					this.AddBool(b);
+					break;
+				case Vector3Int v3:
+					this.AddV3Int(v3);
 					break;
 				default:
 					throw new ArgumentException("type not handled: " + data.GetType().Name);

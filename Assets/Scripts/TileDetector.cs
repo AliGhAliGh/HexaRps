@@ -1,4 +1,3 @@
-using Blocks;
 using UnityEngine;
 
 public class TileDetector : MonoBehaviour
@@ -25,21 +24,21 @@ public class TileDetector : MonoBehaviour
 		{
 			var ray = mainCamera.ScreenPointToRay(Input.mousePosition);
 			if (Physics.Raycast(ray, out var hit))
-				GroundManager.AddBlock((BlockMode)Random.Range(0, 3), GroundManager.GetPosition(hit.point));
+				GameManager.GroundClick(GroundManager.GetPosition(hit.point));
 		}
-
-		if (Input.GetMouseButtonDown(1))
-		{
-			var ray = mainCamera.ScreenPointToRay(Input.mousePosition);
-			if (Physics.Raycast(ray, out var hit))
-				GroundManager.RemoveBlock(GroundManager.GetPosition(hit.point));
-		}
-
-		if (Input.GetMouseButtonDown(2))
-		{
-			var ray = mainCamera.ScreenPointToRay(Input.mousePosition);
-			if (Physics.Raycast(ray, out var hit))
-				GroundManager.Pushback(GroundManager.GetPosition(hit.point));
-		}
+		//
+		// if (Input.GetMouseButtonDown(1))
+		// {
+		// 	var ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+		// 	if (Physics.Raycast(ray, out var hit))
+		// 		GroundManager.RemoveBlock(GroundManager.GetPosition(hit.point));
+		// }
+		//
+		// if (Input.GetMouseButtonDown(2))
+		// {
+		// 	var ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+		// 	if (Physics.Raycast(ray, out var hit))
+		// 		GroundManager.Pushback(GroundManager.GetPosition(hit.point));
+		// }
 	}
 }
