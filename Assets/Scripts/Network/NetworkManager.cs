@@ -14,7 +14,7 @@ namespace Network
 {
 	public static class NetworkManager
 	{
-		private const string IP = "localhost", DEFAULT_EMAIL = "DefaultEmail";
+		private const string IP = "193.3.231.238", DEFAULT_EMAIL = "DefaultEmail";
 		public const int LOBBY_SIZE = 2;
 
 		private static IClient _client;
