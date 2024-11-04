@@ -33,6 +33,12 @@ public class GroundManager : Singleton<GroundManager>
 		yield return next;
 	}
 
+	public static IEnumerator Developer(Vector3Int pos)
+	{
+		LogManager.ShowError(GetStack(pos).Count);
+		yield break;
+	}
+
 	private static Block GetBlock(BlockMode mode) =>
 		mode switch
 		{
@@ -88,7 +94,7 @@ public class GroundManager : Singleton<GroundManager>
 		{
 			foreach (var canBeWhite in point.GetPeriphery(1).Where(c => IsColoredInGround(c, opposite)))
 			{
-				if (canBeWhite.GetPeriphery(1).Any(c => IsColoredInGround(c, opposite) && HasAny(c)))
+				if (canBeWhite.GetNeighbors(1).Any(c => IsColoredInGround(c, opposite) && HasAny(c)))
 					continue;
 
 				SetColor(ColorMode.Default, canBeWhite);
