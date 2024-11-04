@@ -71,6 +71,8 @@ public class GroundManager : Singleton<GroundManager>
 		yield return Absorb(pos);
 		AdvanceColor(pos);
 		yield return Attack(pos);
+		yield return RefreshGround((ColorMode)(GameManager.CurrentTurn + 1));
+		yield return RefreshGround((ColorMode)(GameManager.CurrentTurn + 1));
 		yield return RefreshGround((ColorMode)(GameManager.CurrentTurn + 1), next);
 	}
 
@@ -98,7 +100,7 @@ public class GroundManager : Singleton<GroundManager>
 
 	private static bool IsColoredInGround(Vector3Int pos, ColorMode color) => IsInGround(pos) && GetColor(pos) == color;
 
-	public static IEnumerator Attack(Vector3Int pos)
+	private static IEnumerator Attack(Vector3Int pos)
 	{
 		if (!HasAny(pos)) yield break;
 

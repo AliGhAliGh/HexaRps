@@ -68,7 +68,12 @@ public partial class GameManager : RefresherSingleton<GameManager>
 
 	public static void GroundClick(Vector3Int pos)
 	{
-		if (!IsMyTurn || Instance._isDone) return;
+		if (!IsMyTurn || Instance._isDone)
+		{
+			LogManager.ShowMessage(Instance._isDone + " , " + IsMyTurn);
+			return;
+		}
+
 		if (OutBlocks.Contains(pos))
 		{
 			DisableOuters();
