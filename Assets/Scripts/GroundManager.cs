@@ -26,7 +26,7 @@ public class GroundManager : Singleton<GroundManager>
 			.OrderByDescending(c => c.Value.Count).Select(c => c.Key);
 		foreach (var pos in list)
 		{
-			yield return Absorb(pos);
+			// yield return Absorb(pos);
 			yield return Attack(pos);
 		}
 
@@ -80,12 +80,7 @@ public class GroundManager : Singleton<GroundManager>
 		var whiteGrounds = pos.GetPeriphery(1).Where(c => IsColoredInGround(c, ColorMode.Default)).ToList();
 		SetColor(color, whiteGrounds.ToArray());
 		var opposite = Opposite(color);
-		foreach (var whiteGround in whiteGrounds)
-		{
-			LogManager.ShowMessage("set white: " + whiteGround);
-			SetWhite(whiteGround);
-		}
-
+		foreach (var whiteGround in whiteGrounds) SetWhite(whiteGround);
 		SetWhite(pos);
 		return;
 
@@ -93,12 +88,8 @@ public class GroundManager : Singleton<GroundManager>
 		{
 			foreach (var canBeWhite in point.GetPeriphery(1).Where(c => IsColoredInGround(c, opposite)))
 			{
-				LogManager.ShowWarning("try: " + canBeWhite);
 				if (canBeWhite.GetPeriphery(1).Any(c => IsColoredInGround(c, opposite) && HasAny(c)))
-				{
-					LogManager.ShowError("reject: " + canBeWhite);
 					continue;
-				}
 
 				SetColor(ColorMode.Default, canBeWhite);
 			}
@@ -107,7 +98,7 @@ public class GroundManager : Singleton<GroundManager>
 
 	private static bool IsColoredInGround(Vector3Int pos, ColorMode color) => IsInGround(pos) && GetColor(pos) == color;
 
-	private static IEnumerator Attack(Vector3Int pos)
+	public static IEnumerator Attack(Vector3Int pos)
 	{
 		if (!HasAny(pos)) yield break;
 
@@ -116,6 +107,7 @@ public class GroundManager : Singleton<GroundManager>
 		var loser = Lower(GetStack(pos).Peek().mode);
 		var canBeAttacked = pos.GetPeriphery(1).Where(c => IsColoredInGround(c, opposite));
 		foreach (var point in canBeAttacked)
+		{
 			if (GetStack(point).TryPeek()?.mode == loser)
 			{
 				yield return RemoveBlock(point);
@@ -132,6 +124,7 @@ public class GroundManager : Singleton<GroundManager>
 				yield return Attack(point);
 				break;
 			}
+		}
 	}
 
 	private static bool HasAny(Vector3Int pos) => GetStack(pos).Count > 0;
@@ -150,6 +143,7 @@ public class GroundManager : Singleton<GroundManager>
 			var stack = GetStack(neighbor);
 			while (stack.TryPeek()?.mode == mode && currentStack.Count < GameManager.MaxStackSize)
 				yield return MoveBlock(neighbor, pos);
+			yield return Attack(neighbor);
 		}
 	}
 
@@ -158,14 +152,20 @@ public class GroundManager : Singleton<GroundManager>
 		if (HasAny(to)) yield break;
 
 		var stack = GetStack(from);
+		var temp = new Stack<Block>();
 		var target = GetPosition(to);
 		foreach (var block in stack)
 		{
+			temp.Push(block);
 			var blockTarget = block.transform.position;
 			blockTarget.x = target.x;
 			blockTarget.z = target.z;
 			yield return BlockAnimator.Mover(block.gameObject, blockTarget);
 		}
+
+		stack.Clear();
+		var targetStack = GetStack(to);
+		foreach (var block in temp) targetStack.Push(block);
 	}
 
 	private static bool IsInGround(Vector3Int pos)

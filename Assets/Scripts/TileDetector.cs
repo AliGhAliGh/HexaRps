@@ -24,7 +24,10 @@ public class TileDetector : MonoBehaviour
 		{
 			var ray = mainCamera.ScreenPointToRay(Input.mousePosition);
 			if (Physics.Raycast(ray, out var hit))
-				GameManager.GroundClick(GroundManager.GetPosition(hit.point));
+				if (Input.GetKey(KeyCode.H))
+					StartCoroutine(GroundManager.Attack(GroundManager.GetPosition(hit.point)));
+				else
+					GameManager.GroundClick(GroundManager.GetPosition(hit.point));
 		}
 		//
 		// if (Input.GetMouseButtonDown(1))
