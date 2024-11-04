@@ -24,19 +24,13 @@ public class GroundManager : Singleton<GroundManager>
 	{
 		var list = Instance._map.Where(c => GetColor(c.Key) == mode)
 			.OrderByDescending(c => c.Value.Count).Select(c => c.Key);
-		foreach (var pos in list)
-		{
-			// yield return Absorb(pos);
-			yield return Attack(pos);
-		}
-
+		foreach (var pos in list) yield return Attack(pos);
 		yield return next;
 	}
 
 	public static IEnumerator Developer(Vector3Int pos)
 	{
-		LogManager.ShowError(GetStack(pos).Count);
-		yield break;
+		yield return RefreshGround(GetColor(pos));
 	}
 
 	private static Block GetBlock(BlockMode mode) =>
@@ -77,7 +71,7 @@ public class GroundManager : Singleton<GroundManager>
 		yield return Absorb(pos);
 		AdvanceColor(pos);
 		yield return Attack(pos);
-		yield return next;
+		yield return RefreshGround((ColorMode)(GameManager.CurrentTurn + 1), next);
 	}
 
 	private static void AdvanceColor(Vector3Int pos)
