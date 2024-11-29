@@ -814,3 +814,21 @@ MonoBehaviour:
       Deutsch: 
       French: 
       Spanish: 
+  - key: YourTurn
+    text:
+      Farsi: "\u0646\u0648\u0628\u062A \u0634\u0645\u0627"
+      English: 
+      Arabic: 
+      Russian: 
+      Deutsch: 
+      French: 
+      Spanish: 
+  - key: OtherTurn
+    text:
+      Farsi: "\u0646\u0648\u0628\u062A \u062D\u0631\u06CC\u0641"
+      English: 
+      Arabic: 
+      Russian: 
+      Deutsch: 
+      French: 
+      Spanish: 

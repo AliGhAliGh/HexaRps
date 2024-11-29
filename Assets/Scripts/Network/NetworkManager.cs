@@ -14,7 +14,9 @@ namespace Network
 {
 	public static class NetworkManager
 	{
-		private const string IP = "193.3.231.238", DEFAULT_EMAIL = "DefaultEmail";
+		// private const string IP = "193.3.231.238";
+		private const string IP = "localhost";
+		private const string DEFAULT_EMAIL = "DefaultEmail";
 		public const int LOBBY_SIZE = 2;
 
 		private static IClient _client;
@@ -124,6 +126,20 @@ namespace Network
 		#region Random
 
 		public static int SyncRandom(int a, int b) => _random.Next(a, b);
+
+		public static List<T> SyncPick<T>(int count, params T[] data)
+		{
+			var res = new List<T>();
+			var list = data.ToList();
+			for (var i = 0; i < count; i++)
+			{
+				var index = SyncRandom(0, list.Count);
+				res.Add(list[index]);
+				list.RemoveAt(index);
+			}
+
+			return res;
+		}
 
 		public static bool SyncRandom() => _random.Next() % 2 == 0;
 
@@ -442,7 +458,6 @@ namespace Network
 
 	public enum OpCode
 	{
-		TurnCmd = 12,
 		AddBlock = 13
 	}
 

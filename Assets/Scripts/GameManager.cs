@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using Blocks;
 using Network;
+using TextHandlers;
 using UnityEngine;
 using Utilities;
-using Utilities.Ui;
 
 public partial class GameManager : RefresherSingleton<GameManager>
 {
-	[SerializeField] private CustomButton nextButton;
-	[SerializeField] private int stackLength = 3, maxStackSize = 5;
+	[SerializeField] private LuiText turn;
+	[SerializeField] private int creationSize, maxStackSize = 5;
 
 	public static Action OnChangeTurn;
 	public static int MaxStackSize => Instance.maxStackSize;
@@ -39,11 +39,13 @@ public partial class GameManager : RefresherSingleton<GameManager>
 	private void Start()
 	{
 		CurrentTurn = 0;
-		nextButton.OnClick = NextTurn;
 		_selected = Vector3Int.zero;
 		_isDone = false;
-		OnChangeTurn += RefreshButtons;
-		OnChangeTurn += () => _isDone = false;
+		OnChangeTurn += () =>
+		{
+			turn.SetText(IsMyTurn ? "YourTurn" : "OtherTurn");
+			_isDone = false;
+		};
 		OnChangeTurn?.Invoke();
 		InitBlockObjects();
 		_myColor = NetworkManager.GameId == 0 ? ColorMode.Red : ColorMode.Blue;
@@ -52,27 +54,36 @@ public partial class GameManager : RefresherSingleton<GameManager>
 
 	private static void InitBlockObjects()
 	{
-		for (var i = 0; i < 5; i++)
+		Instance._usedBlocks.Clear();
+		var sum = Instance.creationSize * OutBlocks.Count;
+		var count = sum / 3;
+		var blocks = new List<BlockMode>();
+		for (var i = count * 3; i < sum; i++) blocks.Add((BlockMode)NetworkManager.SyncRandom(0, 3));
+		for (var i = 0; i < count; i++)
 		{
-			var stack = CreateRandomStack(Instance.stackLength);
-			CoroutineRunner.Run(GroundManager.AddStack(stack.ToList(), OutBlocks[i]));
+			blocks.Add(BlockMode.Paper);
+			blocks.Add(BlockMode.Rock);
+			blocks.Add(BlockMode.Scissors);
+		}
+
+		foreach (var block in OutBlocks)
+		{
+			var stack = CreateRandomStack(blocks);
+			CoroutineRunner.Run(GroundManager.AddStack(stack.ToList(), block));
 		}
 	}
 
-	private static Stack<BlockMode> CreateRandomStack(int count)
+	private static Stack<BlockMode> CreateRandomStack(List<BlockMode> entities)
 	{
-		var stack = new Stack<BlockMode>();
-		for (var i = 0; i < count; i++) stack.Push((BlockMode)NetworkManager.SyncRandom(0, 3));
-		return stack;
+		var res = new Stack<BlockMode>(NetworkManager.SyncPick(Instance.creationSize, entities.ToArray()));
+		foreach (var blockMode in res) entities.Remove(blockMode);
+		return res;
 	}
 
 	public static void GroundClick(Vector3Int pos)
 	{
 		if (!IsMyTurn || Instance._isDone)
-		{
-			LogManager.ShowMessage(Instance._isDone + " , " + IsMyTurn);
 			return;
-		}
 
 		if (OutBlocks.Contains(pos))
 		{
@@ -101,14 +112,6 @@ public partial class GameManager : RefresherSingleton<GameManager>
 
 		void DisableOuters() => GroundManager.SetColor(ColorMode.Default, OutBlocks.ToArray());
 	}
-
-	private void NextTurn()
-	{
-		NetworkManager.Broadcast(OpCode.TurnCmd);
-		nextButton.Interactable = false;
-	}
-
-	private void RefreshButtons() => nextButton.Interactable = IsMyTurn;
 
 	protected override void Refresh() => OnChangeTurn = null;
 }
