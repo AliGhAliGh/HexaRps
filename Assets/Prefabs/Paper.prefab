@@ -46,6 +46,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mode: 0
+  transparentMaterial: {fileID: 2100000, guid: cb6bd9b5827e6a34cb71d4e257e8ec18, type: 2}
+  myRenderer: {fileID: 7437821885036449910}
 --- !u!1 &2263959547582602423
 GameObject:
   m_ObjectHideFlags: 0

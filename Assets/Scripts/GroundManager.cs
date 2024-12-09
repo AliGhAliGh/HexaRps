@@ -46,6 +46,7 @@ public class GroundManager : Singleton<GroundManager>
 	{
 		var block = GetBlock(blockMode);
 		var instance = Instantiate(block);
+		instance.SetTransparency(false);
 		var stack = GetStack(pos);
 		var targetPos = GetTopPos(pos);
 		stack.Push(instance);
