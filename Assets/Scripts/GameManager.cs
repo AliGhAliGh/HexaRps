@@ -4,20 +4,25 @@ using System.Linq;
 using Blocks;
 using Network;
 using TextHandlers;
+using TMPro;
 using UnityEngine;
 using Utilities;
+using Utilities.Ui;
 
 public partial class GameManager : RefresherSingleton<GameManager>
 {
 	[SerializeField] private LuiText turn;
-	[SerializeField] private int creationSize, maxStackSize = 5;
+	[SerializeField] private CustomButton attackButton;
+	[SerializeField] private SpriteSwapper attackSwapper;
+	[SerializeField] private TextMeshProUGUI attackCountText;
+	[SerializeField] private int creationSize, maxStackSize = 5, attackCount = 3;
 
 	public static Action OnChangeTurn;
 	public static int MaxStackSize => Instance.maxStackSize;
 
 	private Vector3Int _selected;
 	private ColorMode _myColor;
-	private bool _isDone;
+	private bool _isDone, _isEnabled;
 
 	private static readonly List<Vector3Int> OutBlocks = new()
 	{
@@ -33,14 +38,16 @@ public partial class GameManager : RefresherSingleton<GameManager>
 	public static int CurrentTurn { get; private set; }
 
 	public static bool IsMyTurn => NetworkManager.GameId == CurrentTurn;
-
+	private static bool IsAttackSelected => Instance.attackSwapper.Code == "Selected";
 	private static bool IsOuterBlocksEmpty => OutBlocks.All(c => GroundManager.GetStack(c).Count == 0);
 
 	private void Start()
 	{
+		attackCountText.text = attackCount.ToString();
 		CurrentTurn = 0;
 		_selected = Vector3Int.zero;
 		_isDone = false;
+		attackButton.OnClick = ToggleAttackButton;
 		OnChangeTurn += () =>
 		{
 			turn.SetText(IsMyTurn ? "YourTurn" : "OtherTurn");
@@ -50,6 +57,11 @@ public partial class GameManager : RefresherSingleton<GameManager>
 		InitBlockObjects();
 		_myColor = NetworkManager.GameId == 0 ? ColorMode.Red : ColorMode.Blue;
 		InitBroadcasters();
+	}
+
+	private void ToggleAttackButton()
+	{
+		if (IsMyTurn) attackSwapper.Code = IsAttackSelected ? "Deselected" : "Selected";
 	}
 
 	private static void InitBlockObjects()
@@ -82,7 +94,7 @@ public partial class GameManager : RefresherSingleton<GameManager>
 
 	public static void GroundClick(Vector3Int pos)
 	{
-		if (!IsMyTurn || Instance._isDone)
+		if (!IsMyTurn || Instance._isDone || !Instance._isEnabled)
 			return;
 
 		if (OutBlocks.Contains(pos))
@@ -98,9 +110,18 @@ public partial class GameManager : RefresherSingleton<GameManager>
 			return;
 		}
 
+		var isSameColor = GroundManager.GetColor(pos) == Instance._myColor;
 		if (Instance._selected != Vector3Int.zero && !Instance._usedBlocks.Contains(Instance._selected) &&
-		    GroundManager.GetColor(pos) == Instance._myColor && GroundManager.GetStack(pos).Count is 0)
+		    (isSameColor || IsAttackSelected) && GroundManager.GetStack(pos).Count is 0)
 		{
+			if (!isSameColor)
+			{
+				Instance.attackSwapper.Code = "Deselected";
+				Instance.attackCount--;
+				Instance.attackButton.Interactable = Instance.attackCount > 0;
+				Instance.attackCountText.text = Instance.attackCount.ToString();
+			}
+
 			NetworkManager.Broadcast(OpCode.AddBlock, Instance._selected, pos);
 			Instance._isDone = true;
 			DisableOuters();

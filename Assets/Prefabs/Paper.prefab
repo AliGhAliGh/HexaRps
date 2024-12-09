@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mode: 0
-  transparentMaterial: {fileID: 2100000, guid: cb6bd9b5827e6a34cb71d4e257e8ec18, type: 2}
+  transparentMaterial: {fileID: 2100000, guid: d99316ed916376d428b041c46cbb07e3, type: 2}
   myRenderer: {fileID: 7437821885036449910}
 --- !u!1 &2263959547582602423
 GameObject:
@@ -74,13 +74,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2263959547582602423}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 4, y: 4, z: 4}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6655007719160167108}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!33 &2053574686988358160
 MeshFilter:
   m_ObjectHideFlags: 0

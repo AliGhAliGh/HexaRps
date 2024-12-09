@@ -12,18 +12,25 @@ public partial class GameManager
 		NetworkManager.ConsumeSyncMessages();
 	}
 
-	private static void NetNextTurn()
+	private void NetNextTurn()
 	{
 		CurrentTurn = (CurrentTurn + 1) % NetworkManager.LOBBY_SIZE;
+		attackSwapper.Code = "Deselected";
 		OnChangeTurn?.Invoke();
-		CoroutineRunner.Run(Refresh(Refresh(Refresh())));
+		_isEnabled = false;
+		CoroutineRunner.Run(RefreshIe());
 		return;
 
-		IEnumerator Refresh(object next = null)
+		IEnumerator RefreshIe()
 		{
 			yield return GroundManager.RefreshGround((ColorMode)CurrentTurn + 1);
-			yield return GroundManager.RefreshGround((ColorMode)CurrentTurn + 1);
-			yield return GroundManager.RefreshGround((ColorMode)CurrentTurn + 1, next);
+			if (GroundManager.IsGroundChanged)
+			{
+				yield return RefreshIe();
+				yield break;
+			}
+
+			_isEnabled = true;
 		}
 	}
 
@@ -47,7 +54,7 @@ public partial class GameManager
 
 		IEnumerator Next()
 		{
-			NetNextTurn();
+			Instance.NetNextTurn();
 			yield break;
 		}
 	}

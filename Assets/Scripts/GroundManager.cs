@@ -18,9 +18,21 @@ public class GroundManager : Singleton<GroundManager>
 	[SerializeField] private Scissors scissors;
 	[SerializeField] private float blockHeight;
 
+	private bool _isGroundChanged;
+
 	private readonly Dictionary<Vector3Int, Stack<Block>> _map = new();
 
-	public static IEnumerator RefreshGround(ColorMode mode, object next = null)
+	public static bool IsGroundChanged
+	{
+		get
+		{
+			var temp = Instance._isGroundChanged;
+			Instance._isGroundChanged = false;
+			return temp;
+		}
+	}
+
+	public static IEnumerator RefreshGround(ColorMode mode, IEnumerator next = null)
 	{
 		var list = Instance._map.Where(c => GetColor(c.Key) == mode)
 			.OrderByDescending(c => c.Value.Count).Select(c => c.Key);
@@ -67,7 +79,7 @@ public class GroundManager : Singleton<GroundManager>
 		return stack;
 	}
 
-	public static IEnumerator Execute(Vector3Int pos, object next = null)
+	public static IEnumerator Execute(Vector3Int pos, IEnumerator next = null)
 	{
 		yield return Absorb(pos);
 		AdvanceColor(pos);
@@ -205,6 +217,7 @@ public class GroundManager : Singleton<GroundManager>
 	{
 		var stack = GetStack(pos);
 		if (stack.Count == 0) yield break;
+		Instance._isGroundChanged = true;
 		yield return BlockAnimator.Destroy(stack.Pop());
 	}
 
