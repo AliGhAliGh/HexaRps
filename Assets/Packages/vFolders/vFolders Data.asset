@@ -704,6 +704,7 @@ MonoBehaviour:
     - fa3b1c88dfd9af4489e5866f057ec8b4
     - 76216f025dbf41d686e9ceebe023c1de
     - c9f20c38635af404abbe6a8794f6869b
+    - f632b92e2adbc9d478bc56d75ebc007f
     values:
     - guid: a9a38e737ce56d646993b1367293fbc6
       iColor: 0
@@ -4144,7 +4145,7 @@ MonoBehaviour:
       iColor: 0
       autoIcon: Shader Icon
       customIcon: 
-      autoIconDirty: 1
+      autoIconDirty: 0
     - guid: 76216f025dbf41d686e9ceebe023c1de
       iColor: 0
       autoIcon: cs Script Icon
@@ -4154,4 +4155,9 @@ MonoBehaviour:
       iColor: 0
       autoIcon: 
       customIcon: 
+      autoIconDirty: 0
+    - guid: f632b92e2adbc9d478bc56d75ebc007f
+      iColor: 0
+      autoIcon: 
+      customIcon: Cubemap Icon
       autoIconDirty: 0

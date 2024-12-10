@@ -395,10 +395,11 @@ namespace Network
 			await SetMatchData(match);
 		}
 
-		public static async Task Quit()
+		public static async Task Leave()
 		{
 			if (_matchId != null)
 				await _socket.LeaveMatchAsync(_matchId);
+			await Delete("Match", "LastMatch");
 		}
 
 		private static async Task SetMatchData(IMatch match)
@@ -458,7 +459,8 @@ namespace Network
 
 	public enum OpCode
 	{
-		AddBlock = 13
+		AddBlock = 13,
+		Reverse = 14
 	}
 
 	public class User : IEquatable<User>

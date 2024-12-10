@@ -45,6 +45,36 @@ public class GroundManager : Singleton<GroundManager>
 		yield return RefreshGround(GetColor(pos));
 	}
 
+	public static IEnumerator Reverse(Vector3Int pos, IEnumerator next = null)
+	{
+		var stack = GetStack(pos).ToList();
+		stack.Reverse();
+		for (var i = 0; i < stack.Count / 2; i++)
+		{
+			var first = stack[i].gameObject;
+			var last = stack[^(i + 1)].gameObject;
+			var firstPos = first.transform.position;
+			yield return BlockAnimator.Mover(first,last.transform.position);
+			yield return BlockAnimator.Mover(last, firstPos);
+		}
+
+		yield return next;
+	}
+
+	public static List<Vector3Int> GetPoses()
+	{
+		var res = new List<Vector3Int>();
+		for (var i = -4; i <= 3; i++)
+		for (var j = -3; j <= 1; j++)
+		{
+			var pos = new Vector3Int(i, j);
+			if (IsInGround(pos))
+				res.Add(pos);
+		}
+
+		return res;
+	}
+
 	private static Block GetBlock(BlockMode mode) =>
 		mode switch
 		{
