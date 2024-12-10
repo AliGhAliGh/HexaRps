@@ -47,12 +47,13 @@ public class GroundManager : Singleton<GroundManager>
 
 	public static IEnumerator Reverse(Vector3Int pos, IEnumerator next = null)
 	{
-		var stack = GetStack(pos).ToList();
-		stack.Reverse();
-		for (var i = 0; i < stack.Count / 2; i++)
+		var list = GetStack(pos).ToList();
+		list.Reverse();
+		Instance._map[pos] = new Stack<Block>(list);
+		for (var i = 0; i < list.Count / 2; i++)
 		{
-			var first = stack[i].gameObject;
-			var last = stack[^(i + 1)].gameObject;
+			var first = list[i].gameObject;
+			var last = list[^(i + 1)].gameObject;
 			var firstPos = first.transform.position;
 			yield return BlockAnimator.Mover(first,last.transform.position);
 			yield return BlockAnimator.Mover(last, firstPos);
