@@ -47,9 +47,11 @@ public class GroundManager : Singleton<GroundManager>
 
 	public static IEnumerator Reverse(Vector3Int pos, IEnumerator next = null)
 	{
-		var list = GetStack(pos).ToList();
-		list.Reverse();
-		Instance._map[pos] = new Stack<Block>(list);
+		var stack = GetStack(pos);
+		var list = stack.ToList();
+		var queue = new Queue<Block>();
+		for (var i = 0; i < list.Count; i++) queue.Enqueue(stack.Pop());
+		for (var i = 0; i < list.Count; i++) stack.Push(queue.Dequeue());
 		for (var i = 0; i < list.Count / 2; i++)
 		{
 			var first = list[i].gameObject;
@@ -134,8 +136,8 @@ public class GroundManager : Singleton<GroundManager>
 		{
 			foreach (var canBeWhite in point.GetPeriphery(1).Where(c => IsColoredInGround(c, opposite)))
 			{
-				if (canBeWhite.GetNeighbors(1).Any(c => IsColoredInGround(c, opposite) && HasAny(c)))
-					continue;
+				// if (canBeWhite.GetNeighbors(1).Any(c => IsColoredInGround(c, opposite) && HasAny(c)))
+					// continue;
 
 				SetColor(ColorMode.Default, canBeWhite);
 			}
