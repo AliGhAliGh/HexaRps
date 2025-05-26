@@ -12,6 +12,7 @@ public partial class GameManager
 	{
 		NetworkManager.AddBroadcastReceiver(OpCode.AddBlock, NetAddBlock);
 		NetworkManager.AddBroadcastReceiver(OpCode.Reverse, NetReverseStack);
+		NetworkManager.AddBroadcastReceiver(OpCode.Move, NetMoveBlock);
 		NetworkManager.ConsumeSyncMessages();
 	}
 
@@ -40,8 +41,7 @@ public partial class GameManager
 
 	private static void NetReverseStack(string userId, ByteArray data, bool isFast)
 	{
-		if (userId == NetworkManager.OwnerID)
-			ReduceReverse();
+		ReduceReverse(NetworkManager.GetGameId(userId));
 		Instance._isEnabled = false;
 		CoroutineRunner.Run(GroundManager.Reverse(data.GetV3Int(), Next()));
 		return;
@@ -55,7 +55,8 @@ public partial class GameManager
 
 	private static void NetAddBlock(string userId, ByteArray data, bool isFast)
 	{
-		Instance._isDone = true;
+		Instance._isWait = false;
+		Instance._doneCount++;
 		var selected = data.GetV3Int();
 		var stack = GroundManager.GetStack(selected).Select(c => c.mode).ToList();
 		stack.Reverse();
@@ -64,8 +65,7 @@ public partial class GameManager
 		if (GroundManager.GetColor(pos) != CurrentColor)
 		{
 			GroundManager.SetColor(CurrentColor, pos);
-			if (userId == NetworkManager.OwnerID)
-				ReduceAttack();
+			ReduceAttack(NetworkManager.GetGameId(userId));
 		}
 
 		CoroutineRunner.Run(GroundManager.Clear(selected, Refresh()));
@@ -80,7 +80,25 @@ public partial class GameManager
 
 		IEnumerator Next()
 		{
-			Instance.NetNextTurn();
+			Instance.RefreshUi();
+			if (Instance._doneCount >= DONE_PER_TURN)
+				Instance.NetNextTurn();
+			yield break;
+		}
+	}
+
+	private static void NetMoveBlock(string userId, ByteArray data, bool isFast)
+	{
+		Instance._isWait = false;
+		var from = data.GetV3Int();
+		var to = data.GetV3Int();
+		ReduceMove(NetworkManager.GetGameId(userId));
+		CoroutineRunner.Run(GroundManager.Move(from, to, AdvanceColor()));
+		return;
+
+		IEnumerator AdvanceColor()
+		{
+			GroundManager.AdvanceColor(to);
 			yield break;
 		}
 	}

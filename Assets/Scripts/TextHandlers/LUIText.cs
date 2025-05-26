@@ -39,6 +39,12 @@ namespace TextHandlers
 			Refresh();
 		}
 
+		public void SetContext(string text)
+		{
+			Refresh();
+			rtlText.text = text;
+		}
+
 		public void SetTextColor(Color c) => rtlText.color = new Color(c.r, c.g, c.b, rtlText.color.a);
 
 		private void Refresh()
@@ -50,12 +56,10 @@ namespace TextHandlers
 
 				if (f != null)
 					_lText = f;
-				else
-					LogManager.ShowMessage(Color.red, key + $" not found in {name}!");
+				else LogManager.ShowMessage(Color.red, key + $" not found in {name}!");
 			}
 
-			if (_lText == null)
-				return;
+			if (_lText == null) return;
 			_needForRefresh = false;
 			rtlText.text = _lText.Value;
 		}

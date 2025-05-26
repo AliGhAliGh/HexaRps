@@ -15,6 +15,7 @@ namespace Network
 	public static class NetworkManager
 	{
 		private const string IP = "193.3.231.238";
+
 		// private const string IP = "localhost";
 		private const string DEFAULT_EMAIL = "DefaultEmail";
 		public const int LOBBY_SIZE = 2;
@@ -111,6 +112,8 @@ namespace Network
 		#region UserManager
 
 		public static int GameId => OwnerUser.Index;
+
+		public static int GetGameId(string netId) => Presences.FirstOrDefault(c => c.UserId == netId)?.Index ?? -1;
 
 		public static string GetUserByIndex(int index) => Presences.FirstOrDefault(c => c.Index == index)?.UserId;
 
@@ -460,7 +463,8 @@ namespace Network
 	public enum OpCode
 	{
 		AddBlock = 13,
-		Reverse = 14
+		Reverse = 14,
+		Move = 15
 	}
 
 	public class User : IEquatable<User>

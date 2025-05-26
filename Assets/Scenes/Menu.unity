@@ -2015,6 +2015,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 6620054141740456184, guid: 27e7819751c075f4fbcba3094acab69c, type: 3}
+      propertyPath: disable
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

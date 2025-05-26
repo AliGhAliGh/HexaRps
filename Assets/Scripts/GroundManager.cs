@@ -57,7 +57,7 @@ public class GroundManager : Singleton<GroundManager>
 			var first = list[i].gameObject;
 			var last = list[^(i + 1)].gameObject;
 			var firstPos = first.transform.position;
-			yield return BlockAnimator.Mover(first,last.transform.position);
+			yield return BlockAnimator.Mover(first, last.transform.position);
 			yield return BlockAnimator.Mover(last, firstPos);
 		}
 
@@ -117,19 +117,28 @@ public class GroundManager : Singleton<GroundManager>
 		yield return Absorb(pos);
 		AdvanceColor(pos);
 		yield return Attack(pos);
-		yield return RefreshGround((ColorMode)(GameManager.CurrentTurn + 1));
-		yield return RefreshGround((ColorMode)(GameManager.CurrentTurn + 1));
+		do yield return RefreshGround((ColorMode)(GameManager.CurrentTurn + 1));
+		while (IsGroundChanged);
 		yield return RefreshGround((ColorMode)(GameManager.CurrentTurn + 1), next);
 	}
 
-	private static void AdvanceColor(Vector3Int pos)
+	public static IEnumerator Move(Vector3Int from, Vector3Int to, IEnumerator next = null)
+	{
+		yield return MoveStack(from, to);
+		do yield return RefreshGround((ColorMode)(GameManager.CurrentTurn + 1));
+		while (IsGroundChanged);
+		yield return RefreshGround((ColorMode)(GameManager.CurrentTurn + 1), next);
+	}
+
+	public static void AdvanceColor(Vector3Int pos)
 	{
 		var color = GetColor(pos);
-		var whiteGrounds = pos.GetPeriphery(1).Where(c => IsColoredInGround(c, ColorMode.Default)).ToList();
-		SetColor(color, whiteGrounds.ToArray());
 		var opposite = Opposite(color);
-		foreach (var whiteGround in whiteGrounds) SetWhite(whiteGround);
-		SetWhite(pos);
+		var whiteGrounds = pos.GetPeriphery(1).Where(c => IsColoredInGround(c, ColorMode.Default)
+		                                                  || IsColoredInGround(c, opposite) && !HasAny(c)).ToList();
+		SetColor(color, whiteGrounds.ToArray());
+		// foreach (var whiteGround in whiteGrounds) SetWhite(whiteGround);
+		// SetWhite(pos);
 		return;
 
 		void SetWhite(Vector3Int point)
@@ -137,14 +146,15 @@ public class GroundManager : Singleton<GroundManager>
 			foreach (var canBeWhite in point.GetPeriphery(1).Where(c => IsColoredInGround(c, opposite)))
 			{
 				// if (canBeWhite.GetNeighbors(1).Any(c => IsColoredInGround(c, opposite) && HasAny(c)))
-					// continue;
+				// continue;
 
 				SetColor(ColorMode.Default, canBeWhite);
 			}
 		}
 	}
 
-	private static bool IsColoredInGround(Vector3Int pos, ColorMode color) => IsInGround(pos) && GetColor(pos) == color;
+	private static bool IsColoredInGround(Vector3Int pos, params ColorMode[] color) =>
+		IsInGround(pos) && color.Contains(GetColor(pos));
 
 	private static IEnumerator Attack(Vector3Int pos)
 	{
@@ -158,6 +168,7 @@ public class GroundManager : Singleton<GroundManager>
 		{
 			if (GetStack(point).TryPeek()?.mode == loser)
 			{
+				GameManager.AddScore(ScoreMode.BlockDestroy);
 				yield return RemoveBlock(point);
 				yield return Requeue(pos);
 				if (HasAny(point))
@@ -166,6 +177,7 @@ public class GroundManager : Singleton<GroundManager>
 					break;
 				}
 
+				GameManager.AddScore(ScoreMode.StackDestroy);
 				yield return MoveStack(pos, point);
 				SetColor(color, point);
 				AdvanceColor(point);
@@ -189,7 +201,7 @@ public class GroundManager : Singleton<GroundManager>
 		foreach (var neighbor in neighbors)
 		{
 			var stack = GetStack(neighbor);
-			while (stack.TryPeek()?.mode == mode && currentStack.Count < GameManager.MaxStackSize)
+			while (stack.TryPeek()?.mode == mode && currentStack.Count < GameManager.MAX_STACK_SIZE)
 				yield return MoveBlock(neighbor, pos);
 			yield return Attack(neighbor);
 		}
